@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script>
+
+        // todo: Does it affect Object.keys and Object.getOwnPropertyNames
+        // configurable --> controls whether you can configure enumerable and writable or any other
+        // property attribute
+        // todo: Change configurable to false and try to set writable on name to true. Does it work?
+
+        function print(str){
+            console.log(str, ':', eval(str));
+        }
+
+        var x = {
+            name: 'Chandu',
+            type: 'UI Developer'
+        };
+
+        print("Object.getOwnPropertyDescriptor(x, 'name')");
+
+
+        /*
+        // if we uncomment and run this html, then we get an error.  Cannot redefine Property: name.
+        // If we run this after commenting, it runs successfully.
+
+        Object.defineProperty(x, 'name', {
+            writable: false
+        });
+        x.name = 'Rohit';
+        print('x.name');
+
+        */
+
+        //var  kk = Object.keys(x)
+
+        print('Object.keys(x)');
+        print("Object.keys('x')");
+
+        print('Object.getOwnPropertyNames(x)');
+
+        Object.defineProperty(x,'name',{
+            configurable: false
+        });
+
+        Object.defineProperty(x,'name',{
+            writable: true
+        });
+
+
+        // todo: What is the defining a getter and setter in an object literal
+
+        var obj = {
+            _interest: 10,
+            get _interest_rate() {
+                return this._interest ;
+            },
+            set _interest_rate(value) {
+                this._interest = value *
+                console.log('setter: '+value);
+            }
+        };
+
+        var mort = {
+            interest:1,
+            get: function () {
+                return mort._interest_rate;
+            },
+            set: function (x) {
+                if (typeof x === 'number') {
+                    mort._interest_rate = x;
+                } else {
+                    throw('The value being assigned to interest is not a number.');
+                }
+            }
+        };
+         mort.interest = 1.225;
+
+        print('mort.interest');
+
+        // todo: Study with examples preventExtensions, seal and freeze - JTDG
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>object attributes</title>
+</head>
+<body>
+<script>
+    function print(str){
+        console.log(str, ':', eval(str));
+    }
+
+    var x = {};
+
+    var parent = Object.getPrototypeOf(x);
+    print(parent);
+
+   // var dx = Object.isExtensible(x);
+    print(Object.isExtensible(x))
+
+    x.name = 'Chandu';
+    print('x');
+    Object.preventExtensions(x);
+    print(Object.isExtensible(x))
+
+    x.type = 'Developer';
+
+    print(x.type);
+
+
+    //[[class]]
+    print('x.toString()');
+
+    var date = new Date();
+
+    print('date.toString');
+
+    print('Object.getPrototypeOf(Date.prototype) === Object.prototype');
+    // returns true
+
+    print('date.hasOwnProperty("toString")');
+
+   // var date1 = Date.prototype.toString().call(new Date())
+    print('Date.prototype.toString.call(date)');
+    print('Object.prototype.toString.call(date)');
+
+
+    print('Object.prototype.toString.call(new Date())');
+    print('Object.prototype.toString.call(new RegExp())');
+    print('Object.prototype.toString.call(new Array())');
+    print('Object.prototype.toString.call(new Object())');
+    print('Object.prototype.toString.call(new String())');
+    print('Object.prototype.toString.call(new Number())');
+    print('Object.prototype.toString.call(new Boolean())');
+    print('Object.prototype.toString.call(new RegExp())');
+    print('Object.prototype.toString.call(new Function())');
+
+
+
+    function Person() {}
+    print('Object.prototype.toString.call(new Person())');
+
+    function getClassName(obj) {
+        var str = Object.prototype.toString.call(obj);
+        var match = str.match(/\[object\s([^\]]+)]/)[1];
+
+        console.log(match);
+    }
+
+    getClassName(new Date());
+
+</script>
+
+</body>
+</html>

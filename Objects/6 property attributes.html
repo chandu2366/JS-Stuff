@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function print(str){
+            console.log(str, ':', eval(str));
+        }
+
+        var x = {
+            name: 'Chandu',
+            type: 'UI Developer'
+        };
+        print("Object.getOwnPropertyDescriptor(x, 'name')");
+
+        Object.defineProperty(x, 'name', {
+            writable: false
+        });
+        x.name = 'Rohit';
+        print('x.name');
+        print("Object.getOwnPropertyDescriptor(x, 'name')");
+        // enumeration loop
+        var loop_variable;
+        for (loop_variable in x) {
+            console.log(loop_variable, typeof loop_variable); // print the property name
+            console.log(x[loop_variable]);
+        }
+        Object.defineProperty(x, 'name', {
+            enumerable: false
+        });
+        console.log(' ------- Running enumeration loop after setting enumerable - false for name ------');
+        for (loop_variable in x) {
+            console.log(loop_variable, typeof loop_variable); // print the property name
+            console.log(x[loop_variable]);
+        }
+
+        // todo: Does it affect Object.keys and Object.getOwnPropertyNames
+        // configurable --> controls whether you can configure enumerable and writable or any other
+        // property attribute
+        // todo: Change configurable to false and try to set writable on name to true. Does it work?
+
+
+        // getter and setter properties
+        var mort = {
+            interest_rate: 10
+        };
+        mort.interest = 'a';
+        print('mort.interest');
+
+        mort = {
+            _interest_rate: 10 // _ is an indication that you wish to keep the prop private
+            // it DOES NOT make the property private - use a closure for that
+        };
+        Object.defineProperty(mort, 'interest', {
+            get: function () {
+                return mort._interest_rate;
+            },
+            set: function (x) {
+                if (typeof x === 'number') {
+                    mort._interest_rate = x;
+                } else {
+                    throw('The value being assigned to interest is not a number.');
+                }
+            }
+        });
+        // mort.interest = 1.225;
+        mort.interest = 'a';
+        print('mort.interest');
+
+        // todo: What is the defining a getter and setter in an object literal
+        // todo: Study with examples preventExtensions, seal and freeze - JTDG
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>call and apply</title>
+</head>
+<script>
+    function print(str){
+        console.log (str,  ':', eval(str) );
+    }
+
+   function test(){
+       console.log('this :', this);
+   };
+
+   test();
+
+   var chandu = {
+       name: 'Raj'
+   };
+
+   test.call(chandu);
+   test.apply(chandu);
+
+
+   var fn = test.bind(chandu);
+
+   fn();
+
+   test()
+
+    function sum(x,y){
+        return x + y;
+    }
+
+    var sum_new = sum.bind(null,100);
+
+    console.log(sum_new(10,20));
+
+</script>
+<body>
+
+</body>
+</html>
