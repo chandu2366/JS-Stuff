@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prototypal Inheritance</title>
+<script>
+    function print(str){
+        console.log(str, ':', eval(str)); // eval is evil - DO NOT USE in production
+    }
+
+    // when an empty function is created, it creates 2 objects.
+    // (a) empty object
+    // (b) empty object with attributes and properties. this is a prototype object.
+    // (c) will have a property called .prototype which is a reference and points to other (b) object.
+
+
+    // Object attribute [[prototype]]
+    // [[prototype]] is a reference to another javascript object
+    // from which the current JS object will inherit its properties
+
+    var grandparent = {
+
+        type : 'grand parent',
+        city : 'Sunnyvale'
+    };
+
+    print(grandparent);
+
+    /*var parent = {
+     type: 'parent'
+     };*/
+
+    var parent = Object.create(grandparent);
+    print(parent);
+
+    parent.city = 'Austin';
+    // setting the parent's [[prototype]] attribute to grandparent
+    // parent[[prototype]] = grandparent
+    print(parent);
+
+    // returns undefined as prototype is an attribute, not a property
+    print(parent.prototype);
+
+
+    // correct ESS way of accessing the prototype
+    // console.log(Object.getPrototypeOf(child) === grandparent);
+    print(Object.getPrototypeOf(parent) === grandparent);
+
+    /*var child = {
+     type: 'child'
+     };*/
+
+
+    var child = Object.create(parent);
+    print(Object.getPrototypeOf(child) === parent);
+
+    console.log(child.city);
+
+    grandparent.data = 'some test informatiion';
+
+    console.log(child.data);
+
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

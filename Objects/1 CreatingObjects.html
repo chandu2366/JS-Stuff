@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Creatinf Objects</title>
+    <script>
+        // there are 3  methods to create objects/
+
+        // object literal
+        var x = {
+            name: 'Chandu'
+        };
+
+        //console.log(x);
+
+        // using constructor
+        function Person(name){
+            this.name = name;
+        }
+        var chan = new Person('chandu');
+
+       // console.log(chan);
+       //console.log(chan.name);
+
+
+       // using object.create
+        var parent = {
+
+            city: 'Sunnyvale'
+        };
+        var child = Object.create(parent);
+
+        console.log(child);
+        console.log(child.city);
+    </script>
+</head>
+<body>
+Hello world
+</body>
+</html>

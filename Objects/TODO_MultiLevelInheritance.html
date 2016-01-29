@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>multi level inheritance </title>
+    <script>
+
+        // TODO: create a multi level inheritance
+        // Person --> Employee
+        // Person.prototype.type = 'Person';
+        // --> Both Person and Employee should be constructors
+        // Employee.prototype.company = 'GoLiveLabs';
+        // var emp = new Employee();
+        // emp.type // Person
+
+        function Person(){
+
+        }
+
+        Person.prototype.type = 'Person';
+
+        function Employee (){
+
+        }
+
+        Employee.prototype = new Person();
+
+        Employee.prototype.company = 'GoLiveLabs';
+
+        var emp = new Employee();
+
+        console.log(emp.company);
+        console.log(emp.type);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
