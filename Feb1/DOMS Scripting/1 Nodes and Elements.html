@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nodes and elements</title>
+</head>
+<body>
+
+    <div id="mydiv">
+        <ul class="my-ul-class">
+            <li>Chandu</li>
+            <li>Manali</li>
+            <li class="some-class">James</li>
+        </ul>
+    </div>
+
+    <div class="my-ul-class">Hello world</div>
+
+    <script>
+        // DOM - Document Object Model
+
+        // Operations with DOM --> Query / Traverse / Modify
+
+        var mydiv = document.getElementById('mydiv');
+        var elements = document.getElementsByClassName('my-ul-class');
+        console.log(elements);
+
+        elements = Array.prototype.slice.call(elements);
+        // todo: provide an explanation as to what is going on in the above statement?
+        // slice method can also be used to convert array like objects or collections to a new array.  we are using .call function of Function.prototype  to bind the slice method to the object 'elements'
+
+        console.log(elements);
+        console.log(Array.isArray(elements));
+
+        // query operator
+        var li = document.querySelector('li');  // CSS selectors
+        var lis = document.querySelectorAll('li');  // CSS selectors
+
+        var li_class = document.querySelector('li.some-class');  // Most CSS selectors
+        console.log(li, lis);
+        console.log(li_class, li_class);
+
+        // find an li element which is a descendant of ul, where the ul is a descendant of div
+        var li = document.querySelector('div ul li');  // CSS combinators will also work
+        console.log(li);
+
+        //todo: Study https://developer.mozilla.org/en-US/docs/Web/API/Element/attributes
+
+    </script>
+</body>
+</html>

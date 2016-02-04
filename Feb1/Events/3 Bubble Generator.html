@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #b6c6ee;
+
+        }
+
+        div.circle {
+            height: 10px;
+            width: 10px;
+            border-radius: 50%;
+            border: 1px solid #383852;
+            background-color: rgba(128, 127, 188, 0.81);
+
+            position: absolute;
+        }
+
+    </style>
+</head>
+
+<body>
+    <script>
+        document.body.addEventListener('click', function(event){
+            console.log(event);
+
+            console.log(event.clientX, event.clientY)
+            createBubble(event.clientX, event.clientY)
+        });
+
+        function createBubble(x,y){
+
+            // create the div element
+            // assign the position left, top
+            // append it to the body
+
+            var bubble = document.createElement('div');
+
+            bubble.classList.add('circle');
+
+            bubble.style.left = x - 5 + 'px';
+            bubble.style.top = y - 5 + 'px';
+            document.body.appendChild(bubble);
+        }
+
+    </script>
+</body>
+</html>

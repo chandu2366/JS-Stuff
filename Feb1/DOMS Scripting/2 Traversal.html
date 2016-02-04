@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Traversal</title>
+</head>
+<body>
+
+    <div>
+        <ul>
+            <li>
+                <a href="http://google.com">google</a>
+            </li>
+        </ul>
+
+        <div>
+            This is a child of the parent div.
+        </div>
+    </div>
+
+    <div class="text">
+
+    </div>
+
+    <script>
+        var div = document.querySelector('div');
+
+        // children, first child and last child
+        console.log(div.children);
+
+        console.log(div.firstElementChild);
+        console.log(div.children[0]);
+        console.log(div.lastElementChild);
+
+        console.log(div.children);
+        console.log(div.childNodes); // first child and last child
+
+        var childNodes = div.childNodes;
+        console.log(Array.prototype.slice.call(childNodes).map(function(childNode){
+            return childNode.nodeName + ': ' + childNode.nodeType;
+        }));
+
+        console.log(document.querySelector('div.text').childNodes[0]);
+
+        // difference between children and childNode
+        // .children is a property of an Element. Only Elements have children, and these children are all of type Element.
+        // However .childNodes is a property of Node. .childNodes can contain any node.
+        // mostly use .children
+
+        // traversal
+        console.log(div.firstElementChild.firstElementChild.firstElementChild.firstElementChild);
+    </script>
+</body>
+</html>
