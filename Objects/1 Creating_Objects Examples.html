@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        // Note : when we create an object x = {},  it creates an empty object and a prototype object.  the empty object has the prototype reference pointing to the prototype object.
+        // 3 methods of creating an object.
+
+        // object literal (we should use : operator and not = inside the object). we cannot use this context inside here.
+
+        var x = {
+            name:'chandu',
+            type:'student'
+        }
+
+        console.log(x);
+        console.log(x.name);
+
+
+
+
+        //example 2
+
+        var x2 = {
+            firstname:'Satish',
+            lastname:'Mopur',
+            type: 'student',
+            fullname : function(){
+                return this.firstname + ' ' + this.lastname;
+            },
+            childname : function(name){
+                return 'my name is ' +  name;
+            }
+        }
+
+        console.log(x2)
+        console.log(x2.firstname);
+        console.log(x2.fullname());
+        console.log(x2.childname('peggy'));
+
+ /******************************************************************************/
+
+        // using constructor function.
+        function test(input){
+            this.name = input,
+            this.type = 'employee'
+        }
+
+        var y = new test('Tom');
+
+        console.log(y)
+        console.log(y.name);
+
+
+
+
+        // using constructor function ex : 2.
+        function test2(input1, input2){
+            this.firstname = input1,
+            this.lastname = input2,
+            this.type = 'employee',
+            this.fullName = function(){
+                 return this.firstname + ' ' + this.lastname;
+            }
+            this.childname = function(name){
+                return 'my name is ' +  name;
+            }
+        }
+        var y2 = new test2('kevin','cole')
+
+        console.log(y2)
+        console.log(y2.firstname);
+        console.log(y2.type);
+        console.log(y2.fullName());
+        console.log(y2.childname('rishi'));
+
+
+/******************************************************************************/
+
+        // using object.create
+        var x = {
+            name:'Neil',
+            class: 12
+        }
+
+        var y =  Object.create( {
+                name:'Neil',
+                class: 12});
+        console.log(y)
+        console.log(y.name);
+
+
+        //using object.create example 2
+
+        var d = {
+            firstname:'raj',
+            lastname:'kumar',
+            type: 'student',
+            fullname : function(){
+                return this.firstname + ' ' + this.lastname;
+            },
+            childname : function(name){
+            return 'my name is ' +  name;
+            }
+        }
+
+        var d2 = Object.create(d);
+        console.log(d2)
+        console.log(d2.firstname);
+        console.log(d2.fullname());
+        console.log(d2.childname('kitty'));
+
+    //    QUESTION:
+    //            1) why is it returning a prototype object when we dump y ?
+                 // Object.prototype ==> capital O object is the parent of all objects from which it inherits
+
+    </script>
+
+</head>
+<body>
+
+
+
+</body>
+</html>

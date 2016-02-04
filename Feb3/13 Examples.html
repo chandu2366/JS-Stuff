@@ -3,8 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        div.parent-container {
+            border: 10px solid green;
+            position: relative;
+            width: 200px;
+            height: 100px;
+            overflow: hidden;
+        }
+        div.container {
+            color: white;
+            width: 200px;
+            height: 100px;
+            top: 0px;
+            position: absolute;
+            transition: top 500ms ease;
+        }
+        div.square1 {
+            height: 100px;
+            background-color: red;
+        }
+        div.square2 {
+            height: 100px;
+            background-color: darkred;
+        }
+        div.parent-container:hover > div.container {
+            top: -100px;
+        }
+    </style>
 </head>
 <body>
+
+<div class="parent-container">
+    <div class="container">
+
+        <div class="square1">First Option</div>
+        <div class="square2">Second Option</div>
+
+    </div>
+</div>
 
 </body>
 </html>

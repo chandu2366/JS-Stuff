@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function print(str){
+            console.log(str, ':', eval(str)); // eval is evil - DO NOT USE in production
+        }
+
+        // when an empty function is created, it creates 2 objects.
+        // (a) empty object
+        // (b) empty object with attributes and properties. this is a prototype object.
+        // (c) will have a property called .prototype which is a reference and points to other (b) object.
+
+
+        // Object attribute [[prototype]]
+        // [[prototype]] is a reference to another javascript object
+        // from which the current JS object will inherit its properties
+
+ /*
+        var grandparent = {
+             type : 'grand parent',
+            city : 'Sunnyvale'
+        };
+*/
+
+        function grandparent() {
+            this.type = 'grand parent';
+            this.city = 'Sunnyvale';
+        };
+
+        console.log(grandparent());
+
+        grandparent.prototype.price = 10;
+
+     //   var parent2 =  Object.create(grandparent2.prototype);
+
+  //      console.log(grandparent.city);
+
+  //      print(grandparent.city);
+  //      print(grandparent);
+        var parent = {
+            city:'texas',
+            name:'chandu'
+        }
+   //      parent = Object.create(grandparent);
+            parent = new grandparent();
+            //      print(parent);
+
+        console.log(parent);
+
+        //parent.city = 'Austin';
+        console.log(parent.name);
+
+  //      console.log(grandparent.city);
+
+
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

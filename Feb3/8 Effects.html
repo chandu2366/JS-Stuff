@@ -2,9 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Effects</title>
+    <style>
+        li.large {
+            position: absolute;
+            bottom: 20px;
+            display: none;
+            background-color: white;
+            color: white;
+            font-size: 3em;
+        }
+        li:hover + li.large {
+            display: block;
+            background-color: red;
+            transition: background-color 500ms ease; /* explore the why the transition property is not kicking */
+            padding: 2em;
+        }
+    </style>
 </head>
 <body>
+
+<ul>
+    <li>1</li>
+    <li class="large">Manali Nirhali</li>
+    <li>2</li>
+    <li class="large">Alejandro Munoz</li>
+    <li>3</li>
+    <li class="large">James Joonso Kim</li>
+</ul>
 
 </body>
 </html>

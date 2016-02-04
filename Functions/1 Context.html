@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script>
+        function print(str){
+            console.log (str,  ':', eval(str) );
+        }
+
+        // referring to the "this" as context
+        // 1. functions
+        // 2. methods
+        // 3. constructors
+        // 4. call apply and bind
+
+
+   // "use strict";
+        //1) functions
+        function test(){
+            return this;
+        }
+
+        print('test()')
+
+      //  2) Methods
+        var k = {
+            name : "rakesh"
+        }
+        var x = {
+            name:'Chandu',
+            sayHello: function(){
+                console.log('hello from ', this.name);
+            }
+
+        };
+        x.sayHello();  // sayHello is the method.
+        // The context ('this') for a method is the object which owns the method.
+        // methods are functions which are properties of an object.
+
+        //3) constructors
+        var context;
+        function Person(name) {
+            this.name = name;
+            context = this;
+        }
+
+        var p = new Person('Chandu');
+        print('p === context');
+
+
+
+        // When a function is invoked with the new keyword OR in other words
+        // when a function is invoked as a constructor
+        // the value of this is the newly created objectIntor
+
+        // 4. Call apply and bind --> refer in objects
+
+        console.log(test.call(p));
+        console.log(test.call(x));
+        console.log(test.apply(x));
+
+        console.log(test.bind(null,x));
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

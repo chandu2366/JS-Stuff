@@ -3,6 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+<script>
+// run this in the console after launching Indeed.com and searching for a technology. better in Chrome.  This would download the JSON data in the form of an array
+    myData = document.querySelectorAll('.row');
+    console.log(myData);
+    myArray = [];
+    for (i = 1; i < myData.length; i++){
+        var Title = myData[i].firstElementChild.textContent.trim();
+        var span =  myData[i].querySelector('.company');
+        var Company = span.textContent.trim();
+
+        myArray.push({
+            Title:Title,
+            Company:Company
+        })
+    }
+    console.log(myArray);
+    var a = document.createElement('a')
+    a.download = 'IndeedData'
+
+    a.href = 'data:application/json;utf-8,' + JSON.stringify(myArray)
+    a.click()
+</script>
+
 </head>
 <body>
 

@@ -3,8 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <style>
+        html, body {
+            margin:0;
+            padding:0;
+            height:100%
+        }
+
+        #parentContainer{
+            height:100%;
+           /*  border:  2px solid blue;*/
+        }
+
+        div {
+            height: 100px;
+        }
+
+        div#parentContainer > img {
+            position: absolute; /* or fixed */
+            top: 15%;
+            left: 35%;
+            /* text-align: center; */
+        }
+
+        #Container2 > span{
+            float: right;
+            margin-top: 50px;
+            margin-right: 10%;
+            height:100%;
+        }
+
+
+        #Container1{
+            background:#283443;
+            height:33.333%;
+            text-align: center;
+        }
+
+        #Container2{
+            background-image: url(http://us.billabong.com/tribong/images/banner-mid.jpg) ;
+            height:33.333%;
+        }
+
+        #Container3{
+            background-image:url(http://us.billabong.com/tribong/images/banner-bottom.jpg);
+            height:33.333%;
+        }
+    </style>
+
 </head>
 <body>
+
+<div id="parentContainer">
+    <div id="Container1">
+        <img src="http://us.billabong.com/tribong/images/logo-and-caption.png">
+    </div>
+    <div id="Container2">
+        <span><img src="billabong_phrase.png" height="70%"></span>
+    </div>
+    <div id="Container3">
+    </div>
+    <img src="http://us.billabong.com/tribong/images/banner-foreground-image.png"  height="60%">
+    <!--- img classname="lbibImage" src="http://us.billabong.com/tribong/images/lbib-logo.png"  height="500" --->
+
+</div>
 
 </body>
 </html>

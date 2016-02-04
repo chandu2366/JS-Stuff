@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Propagation</title>
+    <style>
+        div {
+            padding: 4em;
+            background-color: rgba(255, 0, 0, 0.25);
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div id="first">
+        <div id="second">
+            <div id="third">
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        var divs = ['first', 'second', 'third'].reduce(function (obj, prop) { // previos value, current value
+            obj[prop] = document.querySelector('#' + prop);
+            console.log(obj);
+            return obj;
+
+        },{}); // here we are passing the blank object
+
+        divs.first.addEventListener('click', function(){
+            //console.log('even.target ', event.target);
+            console.log('event.currentTarget ', event.currentTarget);
+        })
+
+        divs.second.addEventListener('click', function(){
+            //console.log('even.target ', event.target);
+            console.log('event.currentTarget ', event.currentTarget);
+
+        })
+
+    </script>
+</body>
+</html>

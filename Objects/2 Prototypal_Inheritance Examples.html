@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prototypal Inheritance</title>
+<script>
+    function print(str){
+        console.log(str)  //, ':', eval(str)); // eval is evil - DO NOT USE in production
+    }
+//    QUESTION:
+//    1) when an empty function is created, it creates 2 objects. or is it when we create an object it generates 2 objects ?
+    // (a) empty object
+    // (b) empty object with attributes and properties. this is a prototype object.
+    // (c) will have a property called .prototype which is a reference and points to other (b) object.
+
+
+    // Object attribute [[prototype]]
+    // [[prototype]] is a reference to another javascript object
+    // from which the current JS object will inherit its properties
+
+    //object literal
+    var grandparent = {
+
+        type : 'grand parent',
+        address:'1960 Larsen Pl',
+        city : 'Sunnyvale',
+        fulladdress: function() {
+            zipcode = 95051;
+            return this.address + ', ' + this.city + ', ' + zipcode;
+        }
+    };
+
+
+    print(grandparent);
+    print(grandparent.fulladdress());
+
+    /*var parent = {
+     type: 'parent'
+     };*/
+    print(grandparent.city);
+
+    var parent = Object.create(grandparent);
+    print(parent);
+
+    console.log(parent.city);
+
+    parent.city = 'Austin';
+    // setting the parent's [[prototype]] attribute to grandparent
+    // parent[[prototype]] = grandparent
+    print(parent);
+    console.log(parent.city);
+    // returns undefined as prototype is an attribute, not a property
+    print(parent.prototype);
+
+
+    // correct ESS way of accessing the prototype
+    // console.log(Object.getPrototypeOf(child) === grandparent);
+    print(Object.getPrototypeOf(parent) === grandparent);
+
+    /*var child = {
+     type: 'child'
+     };*/
+
+
+    var child = Object.create(parent);
+    print(Object.getPrototypeOf(child) === parent);
+
+    console.log(child.city);
+
+    grandparent.data = 'some test informatiion';
+
+    console.log(child.data);
+
+
+    //object literal
+    function grandparent2() {
+
+        this.type = 'grand parent',
+        this.address ='1960 Larsen Pl',
+        this.city = 'Sunnyvale',
+        this.fulladdress= function() {
+             zipcode = 95051;
+            return this.address + ', ' + this.city + ', ' + zipcode;
+        }
+    };
+    grandparent2.prototype.price = 10;
+
+    var parent2 =  Object.create(grandparent2.prototype);
+
+
+    console.log(parent2);
+    console.log(parent2.type);
+
+    var parent3 = new grandparent2();
+
+    console.log(parent3);
+    console.log(parent3.price);
+
+//    QUESTION:
+//    1) can we use new for inheritance ?  YES
+
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function print(str) {
+            console.log(str, ':', eval(str)); // eval is evil - DO NOT USE in production
+        }
+
+        // empty car constructor
+        function car(){
+
+        }
+
+        var audi = new car();
+
+        print("Object.getPrototypeOf('audi') === car") // returns false
+        print("Object.getPrototypeOf('audi') === car.prototype") // returns false
+
+        console.log(Object.getPrototypeOf(audi) === car.prototype)
+
+        car.make = 'Audi';
+        print('audi.make');
+        print("Object.getPrototypeOf('audi') === car.prototype") // returns false
+
+        var merc  = new car();
+
+        var audis_parent = Object.getPrototypeOf(audi);
+        audis_parent.type = 'Sedan';
+
+        print ('merc.type');
+
+        print('audis_parent === car.prototype');
+
+        // parent of audi is not car, it is car.prototype
+
+        // when a function object is created, it stores a reference to a
+        // new empty object which will behave as the parent for all instances
+        // created by the contstructor function.
+
+
+        function person(name){
+            this.name = name;
+        }
+
+        var p1 = new person();
+
+
+        var p2 = Object.create(person.prototype);
+
+        person.call(p2);
+
+        person.prototype.type = 'person';
+
+        print('p1.type');
+        print('p2.type');
+
+        QUESTION :  why using print at the top return false.. but console.log returns true...
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

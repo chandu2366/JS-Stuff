@@ -2,9 +2,83 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Modifications</title>
 </head>
 <body>
+
+    <!--  testing removal of child node -->
+    <div id="parent">
+        <div id="child">
+            Testing Removal
+        </div>
+    </div>
+
+    <script>
+
+        // create a div element
+        // append div to body
+        // create a ul element
+        // add ul as the child
+        // create an li element
+        // add li as the child to ul
+
+        // 2 approaches - to do the same thing
+        // use innerHTML
+        // create a text node
+
+
+        var div = document.createElement('div');
+        document.body.appendChild(div);
+        var ul = document.createElement('ul');
+        div.appendChild(ul);
+        var li = document.createElement(li);
+        ul.appendChild(li);
+
+        // Using  innerHTML
+         //li.innerHTML = 'Chandu<h1>Hello world</h1>';  // this will have bold 'hello world'
+
+        // Using textNode
+        var textNode = document.createTextNode('Chandu<h1>Hello world</h1>');
+        // this will print the tags h1 and does not bold 'hello world'
+        li.appendChild(textNode);
+        console.log('list child : ' , li.innerHTML);
+
+        // todo: removeChild,  insertBefore
+
+           // removal of a child
+        /*
+            var parent1 = document.getElementById('parent');
+            var child1 = document.getElementById('child');
+
+            var removeChild = parent1.removeChild(child1);
+        */
+
+
+            // insertBefore.
+
+
+            var parentDiv = document.getElementById('parent');  // get the parent
+        //    or parentDiv = document.getElementById('Child').parentNode;
+
+            var childDiv = document.getElementById('child');  // get the child
+
+            var newChild = document.createElement('div');    // create the newChild
+            var textNode = document.createTextNode('Adding new Text');  // add some text
+                newChild = newChild.appendChild(textNode);
+
+                parentDiv.insertBefore(newChild,childDiv);  // insert before the child where u want to.
+
+
+
+
+     //   console.log('removed list : ' , li.innerHTML);
+
+
+
+        // todo: Study https://developer.mozilla.org/en-US/docs/Web/API/Node thoroughly
+
+    </script>
+
 
 </body>
 </html>

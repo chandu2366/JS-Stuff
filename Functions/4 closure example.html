@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script>
+
+       /*setTimeout(function () {
+         console.log('hello from chandu ... after 2 s');
+         }, 2000);
+
+         console.log('hello from chandu');*/
+
+        // problem
+        /*for (var i = 0; i < 10; i++) {
+         setTimeout(function (i) {
+         console.log(i);
+         }, i * 1000)
+         }*/
+
+        // how to create a function and bind a local variable to it?
+        function test(p) {
+            console.log(p);
+        }
+
+        test('chandu');
+        var fx = test.bind(null, 'Rohit'); // bind(context, param1, param2 ... )
+        fx('Chandu');
+
+
+        // solution using bind to avoid the closure related issue
+        /*for (var i = 0; i < 10; i++) {
+         setTimeout(function (i) {
+         console.log(i);
+         }.bind(null, i), i * 1000);
+         }*/
+
+
+
+        // Immediately invoked function expression
+        (function pr(name) {
+            console.log('Hello ', name)
+        }('Chandu'));
+
+
+        // solution without using the .bind
+        for (var i = 0; i < 10; i++) {
+            (function (j) {
+                setTimeout(function () {
+                    console.log(j);
+                }, j * 1000);
+            } (i));
+        }
+
+        // to fix closure related issues find the variable which is not in scope
+        // and go ahead and make it local
+
+
+
+
+       // A closure is a function having access to the parent scope, even after the parent function has closed.
+
+       // A closure is an inner function that has access to the outer (enclosing) function's variables—scope chain.
+       // The closure has three scope chains: it has access to its own scope (variables defined between its curly brackets),
+       // it has access to the outer function's variables, and it has access to the global variables.
+
+
+        var add = (function () {
+            var counter = 0;
+            return function () {return counter += 1;}
+        })();
+
+        add(); //first time, the counter = 1, second call counter is 2 etc
+
+        // The variable add is assigned the return value of a self-invoking function.
+        // The self-invoking function only runs once. It sets the counter to zero (0), and returns a function expression.
+        // This way add becomes a function. The "wonderful" part is that it can access the counter in the parent scope.
+        // This is called a JavaScript closure. It makes it possible for a function to have "private" variables.
+        // The counter is protected by the scope of the anonymous function, and can only be changed using the add function.
+
+
+    </script>
+
+</head>
+<body>
+
+</body>
+</html>

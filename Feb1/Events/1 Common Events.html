@@ -6,5 +6,44 @@
 </head>
 <body>
 
+<button> say Hello </button>
+
+<script>
+
+    var btn = document.getElementsByTagName('button')[0];
+//    console.log(btn);
+
+    // DOM level 1 specs
+
+  /*
+    btn.onclick = function(){
+
+        console.log("Hello World");
+        console.log(this);
+    }
+
+    btn.onclick = function(){
+        console.log("Another handler")
+    }
+*/
+
+    // How do I add multiple event handlers for the same event onto the object?
+    // DOM Level 2  Specs
+
+    function handler1(){
+        console.log("hello from button")
+    }
+
+    function handler2(){
+        console.log("hi from button!!!!")
+    }
+
+    btn.addEventListener('click',handler1);
+    btn.addEventListener('click',handler2);
+
+    btn.addEventListener('click', function(event){
+        console.log(event);
+    })
+</script>
 </body>
 </html>

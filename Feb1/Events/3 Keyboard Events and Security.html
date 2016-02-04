@@ -2,9 +2,67 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Keyboard Events</title>
+    <link rel="stylesheet" href="../../base.css"
 </head>
+
 <body>
+<input type="text"<br>
+<input type="text" class="insecure" placeholder="insecure data....">
+<div>
+    <h1>Input Data</h1>
+    <div id="data">
+
+    </div>
+</div>
+
+<script>
+    document.querySelector('input').addEventListener('keydown', function(event){
+        console.log(event);
+
+        if(event.keyCode === 13){
+            console.log(self.value);
+        }
+    });
+
+    document.querySelector('input.insecure').addEventListener('keydown', function (event){
+        console.log(event);
+        // todo: Study the whole keyboard event ...
+        // https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent
+        if(event.keyCode === 13){
+            document.querySelector('div#data').innerHTML = this.value;
+            console.log('inside');
+            // type in <script>console.log('Hello') and end tag and see what happens
+            // https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)
+        }
+    });
+
+        // todo: Replace all html escape characters with entities '<' --> '&lt;'
+    function(replaceChars){
+        if (replaceChars.indexOf('<') > -1) {
+            return replaceChars.replace('<','&lt;');  // use an exp[ression ..   /g  global modifier.. so that it continues to change evertyhign
+        }
+        else if (replaceChars.indexOf('>') > -1) {
+            return replaceChars.replace('>', '&gt;');
+        }
+        else return replaceChars;
+    }
+
+    .replace(/<>;\/g, function(str){
+        return O[char];
+    })
+
+    O = {
+        '<' : '&lt;';
+        '>' : '&gt;';
+
+    }
+</script>
+
+<div>
+    <h1>HTML Escape Character</h1>
+    &lt; &gt; ... list the rest
+</div>
 
 </body>
 </html>

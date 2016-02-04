@@ -2,9 +2,92 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Ajax call to get data / promises</title>
+    <link rel="stylesheet" href="../base.css">
+    <style>
+        input[type="text"]{
+            width: 20em;
+        }
+    </style>
 </head>
 <body>
+    <input type="text" name="symbols" id="test">
+    <div id="results"></div>
+    <script>
 
+        // create an XMLHTTPRequest
+        // open it
+        // add an event listener to check if call is complete
+        // send
+
+        // todo: User should enter a term, and see results for that in li elements for the repositories
+        // 1. take input from the user - keydown event on input element
+        // 2. make the ajax call - change the q= term
+        // 3. create multiple li elements based upon the response and set innerHTML to name of repository
+
+
+
+
+
+        function getDataFromURL(searchstring, callback){
+            var xhr = new XMLHttpRequest();
+            xhr.open('get', 'https://api.github.com/search/repositories?q=' + searchstring ); //?q='nodejs'\
+
+            var states =  ['UNSENT', 'OPENED', 'HEADERS_RECEIVED', 'LOADING', 'DONE'];
+            // console.log(xhr);
+
+            console.log('xhr.readyState:', xhr.readyState, states[xhr.readyState]);
+
+            xhr.addEventListener('readystatechange', function() {
+                console.log('xhr.readystate : ', xhr.readystate, states[xhr.readyState]);
+                if(xhr.status === 200 && xhr.readyState === 4){
+                    //console.log('success');
+                    console.log(JSON.parse(xhr.responseText));
+                    var data = JSON.parse(xhr.responseText).items;
+
+                    callback(null, data);
+
+                }
+            });
+
+            xhr.send();
+        }
+
+        function resolveView(err, data) {
+            // all DOM operations
+            var div = document.querySelector('div#results');
+            div.innerHTML = '';
+            document.body.appendChild(div); // document.getElementsByTagName('body')[0]
+            var ul = document.createElement('ul');
+            div.appendChild(ul);
+
+            for (var i = 0; i < data.length; i++){
+                //console.log(i);
+                console.log(data[i].name);
+                var name = document.createTextNode(data[i].name);
+
+                var li = document.createElement('li');
+                ul.appendChild(li);
+                li.appendChild(name);
+
+
+            }
+        }
+
+
+
+        document.querySelector('input').addEventListener('keydown', function(event) {
+            //console.log(event);
+            var self = this;
+            if (event.keyCode === 13) {
+                //console.log(self.value);
+
+                getDataFromURL(self.value, resolveView);
+                this.value = '';
+                }
+            }
+        );
+
+    </script>
 </body>
 </html>

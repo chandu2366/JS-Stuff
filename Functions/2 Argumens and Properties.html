@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Keywords and properties for functions </title>
+
+<script>
+
+    function print(str){
+        console.log (str,  ':', eval(str) );
+    }
+
+    // Function properties, keywords
+
+    // 1. arguments
+
+    function sum(x, y, z) {
+        console.log(arguments);
+        console.log(arguments.callee); // used for recursive calling of anonymous functions
+
+        // ES6 --> Probably will not need any of these ...
+        var _sum = 0;
+        for (var i = 0; i < arguments.length; i++) {
+            _sum += arguments[i];
+        }
+        console.log(_sum);
+        return _sum;
+    }
+
+    sum(10, 15);
+
+
+    // 2. Properties
+    console.dir(sum);
+
+    print('sum.name');
+    // sum.caller provides the function that called the sum function
+
+    print('sum.length');
+    // length --> number of named parameters
+
+</script>
+    </head>
+</head>
+<body>
+
+</body>
+</html>
