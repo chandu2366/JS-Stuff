@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax</title>
+    <script>
+
+        var xhr = new XMLHttpRequest();
+
+        // test using timeout finally
+        xhr.timeout = 800;
+
+        xhr.open('GET', 'https://api.github.com/search/repositories?q=nodejs');
+        // this opens a connection
+
+        xhr.addEventListener('progress', function(e){
+            console.log('within progress event, e :', e.loaded, e.total);
+        });
+
+        xhr.addEventListener('timeout', function(e){
+            console.log('timedout ' , e);
+        });
+
+        xhr.addEventListener('readystatechange', function(){
+            if(xhr.readyState === 4){
+                console.log(xhr);
+                if(xhr.status == 200){
+                    console.log(xhr.responseText);
+                    console.log(xhr.getAllResponseHeaders());
+
+                } else {
+                    console.log(xhr);
+                }
+            } else {
+                if(xhr.readyState === 3){
+                    console.log(xhr.readyState);
+                    document.querySelector('progress').setAttribute('value', xhr.responseText.length ); //('value', 50)
+                    // but we should use e.total
+                }
+
+            }
+            if(xhr.readyState ===2){
+                // do not have to wait for readyState 4 to check the statusCode and statusText
+                console.log(xhr.status, xhr.statusText, xhr.getAllResponseHeaders());
+                document.querySelector('progress').setAttribute('value', xhr.responseText.length ); //('value', 50)
+            }
+
+        });
+
+        xhr.send(); // the request is sent.  if you need to pass any details , can do pass within brackets
+
+        // link header is used for pagination.
+
+    </script>
+</head>
+<body>
+<progress value="0" max="164082"></progress>
+
+</body>
+</html>

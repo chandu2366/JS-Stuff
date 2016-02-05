@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'data.json');
+
+        xhr.addEventListener('readystatechange', function(){
+            if (xhr.readyState === 4 && xhr.status === 200){
+                var results = JSON.stringify(xhr.responseText);
+                console.log(results);
+            }
+        });
+        xhr.send();
+
+        // todo: write code to show the above data in a table ...
+
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

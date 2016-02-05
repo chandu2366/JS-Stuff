@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax</title>
+    <script>
+
+        // todo: add event listeners for xhr's abort, error, load, loadend and loadstart
+        // todo: read about xhr.readyState https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
+        /*
+      value  State   Description
+         0	UNSENT	Client has been created. open() not called yet.
+         1	OPENED	open() has been called.
+         2	HEADERS_RECEIVED	send() has been called, and headers and status are available.
+         3	LOADING	Downloading; responseText holds partial data.
+         4	DONE	The operation is complete.
+
+         */
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://api.github.com/search/repositories?q=nodejs');
+        // this opens a connection
+
+        xhr.addEventListener('progress', function(e){
+      //      console.log('within progress event, e :', e.loaded, e.total);
+        });
+
+        // this did not occur as the process was not aborted.  How do u abort the process ?
+        xhr.addEventListener('abort', function(e){
+            console.log('This request has been aborted', e);
+
+        });
+
+        // this did not error
+        xhr.addEventListener('error', function(e){
+            console.log('This request has returned errors', e);
+
+        });
+
+        xhr.addEventListener('load', function(e){
+            console.log('This request has been loaded', e);
+
+        });
+
+        xhr.addEventListener('loadend', function(e){
+            console.log('This request has load and ended', e);
+
+        });
+
+        xhr.addEventListener('loadstart', function(e){
+            console.log('This request has load started', e);
+
+        });
+
+        xhr.addEventListener('readystatechange', function(){
+            if(xhr.readyState === 4){
+                console.log(xhr);
+                if(xhr.status == 200){
+        //            console.log(xhr.responseText);
+        //            console.log(xhr.getAllResponseHeaders());
+
+                } else {
+                    console.log(xhr);
+                }
+            } else {
+                if(xhr.readyState === 3){
+    //                console.log(xhr.readyState);
+                }
+
+            }
+            if(xhr.readyState ===2){
+                // do not have to wait for readyState 4 to check the statusCode and statusText
+                console.log(xhr.status, xhr.statusText, xhr.getAllResponseHeaders());
+
+            }
+
+        });
+
+        xhr.send(); // the request is sent.  if you need to pass any details , can do pass within brackets
+
+        // link header is used for pagination.
+
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>
